@@ -10,8 +10,11 @@ const StyledLogo = styled.h2`
   display: inline-block;
   margin: 0;
   color: #fff;
+  margin-left: ${(props) => (props.isSidebarVisble ? "60px" : "0")};
 `;
 
-const Logo = ({ txt }) => <StyledLogo>{txt}</StyledLogo>;
+const Logo = ({ txt, isSidebarVisible }) => (
+  <StyledLogo isSidebarVisble={isSidebarVisible}>{txt}</StyledLogo>
+);
 
 export default Logo;

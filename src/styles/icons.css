@@ -1,7 +1,7 @@
 .icon {
   font-size: 26px;
   cursor: pointer;
-  color: rgb(233, 88, 73);
+  color: #52a5ff;
   transition: color 0.3s;
 }
 
@@ -13,16 +13,12 @@
   perspective: 1000px;
 }
 
-.brand-icon {
-  /* margin-bottom: 40px; */
-}
-
 .icon-facebook {
-  color: #0087fc;
+  color: #52a5ff;
 }
 
 .icon-github {
-  color: #000;
+  color: #52a5ff;
 }
 
 /* .icon-eye {
@@ -92,4 +88,8 @@
 
 .git-icon {
   color: #ad001d;
+}
+
+.icon-times {
+  color: #cf3a4b;
 }

@@ -1,27 +1,25 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import gsap from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faGithubSquare } from "@fortawesome/free-brands-svg-icons";
-import { fadeInLeft } from "react-animations";
 import { Link } from "react-router-dom";
 import "../../../styles/icons.css";
 
-const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
-
 const SidebarWrappper = styled.div`
   position: absolute;
-  left: 0;
+  left: -70px;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 70px;
   background-color: #343a40;
   box-shadow: 2px 0 4px 0 #000;
-  animation: 0.3s ${fadeInLeftAnimation};
 `;
 
 const FirstIconBox = styled.div`
@@ -42,48 +40,79 @@ const SecondIconBox = styled.div`
   width: 100%;
 `;
 
-const Sidebar = () => {
+const Sidebar = ({ handleToggleIsSidebarVisible }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
+
   const handleToggleSidebarVisible = () => {
     setSidebarVisible((prev) => !prev);
-    console.log(sidebarVisible);
+
+    if (handleToggleIsSidebarVisible) {
+      handleToggleIsSidebarVisible();
+    } else {
+      return;
+    }
   };
+
+  const wrapper = useRef(null);
+  const arrow = useRef(null);
+
+  useEffect(() => {
+    const el = wrapper.current;
+    const el2 = arrow.current;
+    if (sidebarVisible === false) {
+      gsap.set(el2, { visibility: "visible" });
+      gsap.to(el, { duration: 0.4, x: -70 });
+      gsap.to(el2, { duration: 0.4, x: 20 });
+
+      gsap.to(el2, { x: 80, opacity: 1 });
+    } else if (sidebarVisible) {
+      gsap.set(el2, { visibility: "hidden" });
+      gsap.to(el, { duration: 0.4, x: 70 });
+      gsap.to(el2, { duration: 0.1, x: -20 });
+    }
+
+    console.log(el);
+  }, [sidebarVisible]);
+
   return (
     <>
-      {sidebarVisible ? (
-        <SidebarWrappper>
-          <FirstIconBox>
-            <Link to="/">
-              <FontAwesomeIcon className="icon icon-home" icon={faHome} />
-            </Link>
-            <Link to="skills">
-              <FontAwesomeIcon className="icon icon-set" icon={faCog} />
-            </Link>
-            <Link>
-              <FontAwesomeIcon className="icon icon-eye" icon={faEye} />
-            </Link>
-          </FirstIconBox>
-          <SecondIconBox>
-            <Link>
-              <FontAwesomeIcon
-                className="icon brand-icon icon-facebook"
-                icon={faFacebookSquare}
-              />
-            </Link>
-            <Link>
-              <FontAwesomeIcon
-                className="icon brand-icon icon-github"
-                icon={faGithubSquare}
-              />
-            </Link>
-          </SecondIconBox>
-        </SidebarWrappper>
-      ) : (
-        <div onClick={handleToggleSidebarVisible} className="arrow">
-          <div className="arrow-top"></div>
-          <div className="arrow-bottom"></div>
-        </div>
-      )}
+      <SidebarWrappper ref={wrapper}>
+        <FirstIconBox>
+          <Link to="/">
+            <FontAwesomeIcon className="icon icon-home" icon={faHome} />
+          </Link>
+          <Link to="skills">
+            <FontAwesomeIcon className="icon icon-set" icon={faCog} />
+          </Link>
+          <Link>
+            <FontAwesomeIcon className="icon icon-eye" icon={faEye} />
+          </Link>
+        </FirstIconBox>
+        <SecondIconBox>
+          <Link>
+            <FontAwesomeIcon
+              className="icon  icon-facebook"
+              icon={faFacebookSquare}
+            />
+          </Link>
+          <Link>
+            <FontAwesomeIcon
+              className="icon  icon-github"
+              icon={faGithubSquare}
+            />
+          </Link>
+          <Link onClick={handleToggleSidebarVisible}>
+            <FontAwesomeIcon
+              className="icon brand-icon icon-times"
+              icon={faTimes}
+            />
+          </Link>
+        </SecondIconBox>
+      </SidebarWrappper>
+      <div onClick={handleToggleSidebarVisible} className="arrow" ref={arrow}>
+        <div className="arrow-top"></div>
+        <div className="arrow-bottom"></div>
+      </div>
     </>
   );
 };

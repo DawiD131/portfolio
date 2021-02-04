@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import gsap from "gsap";
+import gsap, { Power0 } from "gsap";
+
 import { ReactComponent as Astronaut } from "../Main/astronaut.svg";
 import styled from "styled-components";
 import Main from "../Main/Main";
@@ -58,6 +59,7 @@ const StyledAstronaut = styled.div`
 `;
 
 const Root = () => {
+  const [isEndOfFirstAnimation, setIsEndOfFirstAnimation] = useState(false);
   const landing = useRef(null);
   const astronaut = useRef(null);
   const text1 = useRef(null);
@@ -65,6 +67,9 @@ const Root = () => {
   const text3 = useRef(null);
 
   useEffect(() => {
+    const handleEndOfAnimation = () => {
+      setIsEndOfFirstAnimation((prev) => !prev);
+    };
     const [el2] = astronaut.current.children;
 
     const star1 = el2.querySelector(".star1");
@@ -92,9 +97,9 @@ const Root = () => {
 
     const tl = gsap.timeline();
 
-    tl.from(text1.current, 1, { x: window.innerWidth });
-    tl.from(text2.current, 1, { x: -window.innerWidth });
-    tl.from(text3.current, 1, { x: window.innerWidth });
+    tl.from(text1.current, 1, { x: window.innerWidth, ease: Power0.easeIn });
+    tl.from(text2.current, 1, { x: -window.innerWidth, ease: Power0.easeIn });
+    tl.from(text3.current, 1, { x: window.innerWidth, ease: Power0.easeIn });
     tl.add("pageOut");
     tl.to(
       landing.current,
@@ -107,16 +112,17 @@ const Root = () => {
       3.3,
       "pageOut"
     );
-
     tl.to(
       [text1.current, text2.current, text3.current, astronaut.current],
-      1.6,
+      window.innerWidth > 500 ? 1 : 0.8,
       {
         opacity: 0,
       },
       "pageOut"
     );
+    tl.add(() => handleEndOfAnimation());
   }, []);
+
   return (
     <>
       <LandingPage ref={landing}>
@@ -127,7 +133,7 @@ const Root = () => {
         <Text2 ref={text2}>I'm David</Text2>
         <Text3 ref={text3}>Welcome to my site</Text3>
       </LandingPage>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div>
           <Switch>
             <Route path="/skills">
@@ -135,7 +141,7 @@ const Root = () => {
             </Route>
             <Route path="/">
               <Route>
-                <Main />
+                <Main isEndOfFirstAnimation={isEndOfFirstAnimation} />
               </Route>
             </Route>
           </Switch>
