@@ -43,25 +43,25 @@ const TechWrapper = styled.div`
 `;
 
 const Skills = () => {
-  const JsIcon = <FontAwesomeIcon className="tech-icon js-icon" icon={faJs} />;
-  const NodeIcon = (
-    <FontAwesomeIcon className="tech-icon node-icon" icon={faNode} />
-  );
-  const HtmlIcon = (
-    <FontAwesomeIcon className="tech-icon html-icon" icon={faHtml5} />
-  );
-  const CssIcon = (
-    <FontAwesomeIcon className="tech-icon css-icon" icon={faCss3Alt} />
-  );
-  const SassIcon = (
-    <FontAwesomeIcon className="tech-icon sass-icon" icon={faSass} />
-  );
-  const GitIcon = (
-    <FontAwesomeIcon className="tech-icon git-icon" icon={faGit} />
-  );
-  const ReactIcon = (
-    <FontAwesomeIcon className="tech-icon react-icon" icon={faReact} />
-  );
+  // const JsIcon = <FontAwesomeIcon className="tech-icon js-icon" icon={faJs} />;
+  // const NodeIcon = (
+  //   <FontAwesomeIcon className="tech-icon node-icon" icon={faNode} />
+  // );
+  // const HtmlIcon = (
+  //   <FontAwesomeIcon className="tech-icon html-icon" icon={faHtml5} />
+  // );
+  // const CssIcon = (
+  //   <FontAwesomeIcon className="tech-icon css-icon" icon={faCss3Alt} />
+  // );
+  // const SassIcon = (
+  //   <FontAwesomeIcon className="tech-icon sass-icon" icon={faSass} />
+  // );
+  // const GitIcon = (
+  //   <FontAwesomeIcon className="tech-icon git-icon" icon={faGit} />
+  // );
+  // const ReactIcon = (
+  //   <FontAwesomeIcon className="tech-icon react-icon" icon={faReact} />
+  // );
   return (
     <>
       <GlobalStyle />
@@ -70,7 +70,7 @@ const Skills = () => {
           <Header txt="Skills" primary />
         </HeaderBox>
         <Sidebar />
-        <TechWrapper>
+        {/* <TechWrapper>
           <TechTile
             title="Java Script"
             icon={JsIcon}
@@ -103,7 +103,7 @@ const Skills = () => {
             skills={["Mixins", "Functions", "Variables"]}
           />
           <TechTile title="Git" icon={GitIcon} skills={["sdasd"]} />
-        </TechWrapper>
+        </TechWrapper> */}
       </StyledWrapper>
     </>
   );
