@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import gsap, { Power0 } from "gsap";
-
 import { ReactComponent as Astronaut } from "../Main/astronaut.svg";
 import styled from "styled-components";
 import Main from "../Main/Main";
 import Skills from "../skills/Skills";
+import Projects from "../Projects/Projects";
 
 const Text1 = styled.h1`
   color: #fff;
@@ -139,10 +139,11 @@ const Root = () => {
             <Route path="/skills">
               <Skills />
             </Route>
+            <Route path="/projects">
+              <Projects />
+            </Route>
             <Route path="/">
-              <Route>
-                <Main isEndOfFirstAnimation={isEndOfFirstAnimation} />
-              </Route>
+              <Main isEndOfFirstAnimation={isEndOfFirstAnimation} />
             </Route>
           </Switch>
         </div>

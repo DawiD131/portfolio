@@ -21,18 +21,6 @@
   color: #52a5ff;
 }
 
-/* .icon-eye {
-  color: #1dbf32;
-}
-
-.icon-set {
-  color: #b5b5b5;
-}
-
-.icon-home {
-  color: #ffde85;
-} */
-
 @keyframes shake {
   10%,
   90% {
@@ -62,11 +50,11 @@
   margin-bottom: 0;
 }
 
-.js-icon {
+.icon-js {
   color: #fffc4a;
 }
 
-.node-icon {
+.icon-node {
   color: #378a07;
 }
 
@@ -82,7 +70,7 @@
   color: #e31ec9;
 }
 
-.react-icon {
+.icon-react {
   color: #4877c2;
 }
 

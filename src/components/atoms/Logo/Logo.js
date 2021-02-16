@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledLogo = styled.h2`
   font-size: 25px;
-  font-weight: 340;
+  font-weight: 100;
   letter-spacing: 3px;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;

@@ -70,8 +70,6 @@ const Sidebar = ({ handleToggleIsSidebarVisible }) => {
       gsap.to(el, { duration: 0.4, x: 70 });
       gsap.to(el2, { duration: 0.1, x: -20 });
     }
-
-    console.log(el);
   }, [sidebarVisible]);
 
   return (
@@ -84,7 +82,7 @@ const Sidebar = ({ handleToggleIsSidebarVisible }) => {
           <Link to="skills">
             <FontAwesomeIcon className="icon icon-set" icon={faCog} />
           </Link>
-          <Link>
+          <Link to="projects">
             <FontAwesomeIcon className="icon icon-eye" icon={faEye} />
           </Link>
         </FirstIconBox>

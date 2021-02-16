@@ -120,7 +120,6 @@ const Root = ({ isEndOfFirstAnimation }) => {
           <HeaderBox>
             <Header txt="Junior fullstack web developer" />
             <button className="button type1">Contact</button>
-
             <StyledBackground ref={wrapper}>
               <Rocket />
             </StyledBackground>
